@@ -6,6 +6,7 @@ AVR_SIMULATOR_VERSION=$(shell simulavr --version | head -n 1)
 all: make_images publish/index.html
 
 publish/index.html: report_template.html
+	mkdir -p publish
 	cat $< | \
 		sed "s@{arm_compiler_info}@$(ARM_COMPILER_VERSION)@" | \
 		sed "s@{arm_simulator_info}@$(ARM_SIMULATOR_VERSION)@" | \
