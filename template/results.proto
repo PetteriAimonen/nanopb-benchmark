@@ -1,0 +1,7 @@
+message TestResults
+{
+    required bool success = 1;
+    optional uint32 stack_usage = 2;
+    optional uint32 heap_usage = 3;
+}
+

@@ -1,0 +1,20 @@
+CC = arm-none-eabi-gcc
+CFLAGS += -mcpu=cortex-m3 -mthumb -fno-common -nostartfiles -T ../platform/qemu-arm.ld
+CFLAGS += -g -Wall -Os -I ../platform -Wno-unused
+
+CSRC += ../platform/mini_crt.c
+
+simulation_results: arm-image.elf
+	qemu-system-arm -cpu cortex-m3 -S -s -nographic -semihosting -kernel $< &
+	arm-none-eabi-gdb --nx -batch -x ../platform/gdb-arm-step > simulation_log 2> simulation_results
+	grep -c '=>' simulation_log > simulation_icount
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+arm-image.elf: $(CSRC:.c=.o) ../platform/platform-arm.h ../platform/qemu-arm.ld
+	$(CC) $(CFLAGS) $(CSRC:.c=.o) -o $@
+
+include ../platform/Makefile.common
+
+

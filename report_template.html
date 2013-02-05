@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Embedded Protocol Buffers comparison</title>
+</head>
+<body>
+<h1>Embedded Protocol Buffers comparison</h1>
+<p>This is a benchmark comparison of several <a href="http://code.google.com/p/protobuf/">Protocol Buffers</a> implementations that are suitable for use on embedded devices. The measured metrics are execution speed, RAM usage and compiled code size. Tested platforms are currently 32-bit ARM Cortex-M3 and 8-bit Atmel ATmega128.</p>
+
+<p>The benchmarks are implemented as a simple test program that decodes a 574-byte "AllTypes" message and encodes a success result into a small result message. The input message is designed so that it contains all the types defined in the Protocol Buffers standard, including repeated fields and submessages. Because the input message is much larger than the output message, the benchmark will give more weight to decoding speed than to encoding speed. Depending on application this may or may not be desirable.</p>
+
+<p>All the benchmarks are executed in simulators. The ARM Cortex-M3 simulator is only instruction-level accurate, which means that time taken by e.g. branch delays and division operations is not taken into account. To get exact results for your platform and application, you should construct a benchmark using specific message types and processor you are going to use.</p>
+
+<h2>Results for ARM Cortex-M3</h2>
+
+<p>The tests were compiled using the following compiler: <b>{arm_compiler_info}</b></p>
+<p>The tests have been executed using the following simulator: <b>{arm_simulator_info}</b></p>
+
+<p>
+<img src="arm_code.png" alt="Code size on ARM" />
+</p>
+
+<p>
+<img src="arm_ram.png" alt="RAM usage on ARM" />
+</p>
+
+<p>
+<img src="arm_time.png" alt="Execution time on ARM" />
+</p>
+
+<h2>Results for Atmel ATmega128</h2>
+
+<p>The tests were compiled using the following compiler: <b>{avr_compiler_info}</b></p>
+<p>The tests have been executed using the following simulator: <b>{avr_simulator_info}</b></p>
+
+<p>
+<img src="avr_code.png" alt="Code size on AVR" />
+</p>
+
+<p>
+<img src="avr_ram.png" alt="RAM usage on AVR" />
+</p>
+
+<p>
+<img src="avr_time.png" alt="Execution time on AVR" />
+</p>
+
+<h2>Source files</h2>
+
+<p>The entire source code and scripts used for these benchmarks is available at </p>
+
+<p>Originally written by Petteri Aimonen &lt;jpa<span>@</span>npb.mail.kapsi.fi&gt;</p>
+
+</body>
+

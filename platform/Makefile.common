@@ -1,0 +1,14 @@
+
+simulation_stack: simulation_results
+	protoc --decode=TestResults -I ../template ../template/results.proto < $< \
+		| grep 'stack_usage' | grep -o '[0-9]*' > $@
+       
+simulation_heap: simulation_results
+	protoc --decode=TestResults -I ../template ../template/results.proto < $< \
+		| grep 'heap_usage' | grep -o '[0-9]*' > $@ || echo 0 > $@
+       
+simulation_combined: simulation_stack simulation_heap simulation_size
+	echo fail > simulation_success
+	protoc --decode=TestResults -I ../template ../template/results.proto < simulation_results | grep -q 'success: true' && echo success > simulation_success || true
+
+	echo `cat simulation_version` `cat simulation_date` `cat simulation_icount` `cat simulation_size` `cat simulation_stack` `cat simulation_heap` `cat simulation_success` > $@

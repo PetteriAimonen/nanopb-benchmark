@@ -1,0 +1,6 @@
+target remote :1234
+display /i $pc
+while ($r12 != 0xDEADBEEF)
+    si
+end
+

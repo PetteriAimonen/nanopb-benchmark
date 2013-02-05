@@ -1,0 +1,20 @@
+CC = avr-gcc
+CFLAGS += -mmcu=atmega128
+CFLAGS += -g -Wall -Os -I ../platform -Wno-unused
+
+# Workaround for AVR double being really just float
+CFLAGS += -include stdint.h -Ddouble=uint64_t
+
+simulation_results: avr-image.elf
+	simulavr -d atmega128 -f $< -W 0x20,$@ -T exit > simulation_log
+	grep 'cpu cycles' simulation_log | grep -o '[0-9]*' > simulation_icount
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+avr-image.elf: $(CSRC:.c=.o) ../platform/platform-arm.h
+	$(CC) $(CFLAGS) $(CSRC:.c=.o) -o $@
+
+include ../platform/Makefile.common
+
+
