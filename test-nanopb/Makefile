@@ -1,6 +1,6 @@
 CSRC = alltypes.pb.c results.pb.c test-nanopb.c 
 CSRC += nanopb/pb_encode.c nanopb/pb_decode.c
-CFLAGS = -I nanopb -DPB_NO_ERRMSG
+CFLAGS = -I nanopb -DPB_NO_ERRMSG -DPB_BUFFER_ONLY
 
 all: results_all
 
@@ -16,8 +16,9 @@ simulation_size: nanopb/pb_encode.o nanopb/pb_decode.o alltypes.pb.o results.pb.
 	size -t $^ | grep TOTALS | grep -o '[0-9]*' | head -n 1 > $@
 
 results_all: results_0.1.1 results_0.1.2 \
-			 results_0.1.3 results_0.1.4 results_0.1.5 \
-			 results_0.1.6 results_0.1.7 results_0.1.8
+             results_0.1.3 results_0.1.4 results_0.1.5 \
+             results_0.1.6 results_0.1.7 results_0.1.8 \
+             results_0.1.9
 	cat $^ > $@
 
 results_0.1.1:
@@ -84,6 +85,14 @@ results_0.1.8:
 	echo 0.1.8 > simulation_version
 	echo 2012-12-13 > simulation_date
 	tar xzf nanopb-0.1.8.tar.gz
+	make -B simulation_combined
+	cp simulation_combined $@
+
+results_0.1.9:
+	rm -rf nanopb
+	echo 0.1.9 > simulation_version
+	echo 2013-02-13 > simulation_date
+	tar xzf nanopb-0.1.9.tar.gz
 	make -B simulation_combined
 	cp simulation_combined $@
 

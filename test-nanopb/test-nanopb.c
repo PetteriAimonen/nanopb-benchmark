@@ -5,12 +5,6 @@
 #include "results.pb.h"
 #include "input_data.h"
 
-bool streamcallback(pb_ostream_t *stream, const uint8_t *buf, size_t count)
-{
-    platform_write(buf, count);
-    return true;
-}
-
 int main()
 {
     TestResults results = {};
@@ -23,8 +17,10 @@ int main()
     results.has_stack_usage = true;
     results.stack_usage = platform_stack_usage();
 
-    pb_ostream_t ostream = {&streamcallback, 0, 512, 0};
+    uint8_t buf[16];
+    pb_ostream_t ostream = pb_ostream_from_buffer(buf, sizeof(buf));
     pb_encode(&ostream, TestResults_fields, &results);
+    platform_write(buf, ostream.bytes_written);
     
     return 0;
 }
