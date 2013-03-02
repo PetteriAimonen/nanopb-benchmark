@@ -32,7 +32,8 @@ plot 'results_nanopb_arm' using 2:5 title 'nanopb' with steps lt 1, \
     'results_pec_arm' using 2:5 title 'protobuf-embedded-c' with steps lt 2, \
     'results_pec_arm' using 2:5 notitle with points lt 2 pt 7, \
     'results_pec_arm' using 2:($5-200):1 notitle with labels, \
-    'results_pbc_arm' using 2:($5 + $6) title 'protobuf-c (inc. heap)' with steps lt 3
+    'results_pbc_arm' using 2:($5 + $6) title 'protobuf-c (inc. heap)' with steps lt 3, \
+    1168 title 'size of message structs'
 
 set output 'publish/arm_code.png'
 set yrange [0:20000]
@@ -58,7 +59,7 @@ plot 'results_nanopb_avr' using 2:3 title 'nanopb' with steps, \
     'results_pec_avr' using 2:($3+15000):1 notitle with labels
 
 set output 'publish/avr_ram.png'
-set yrange [0:1500]
+set yrange [0:2000]
 set ylabel 'bytes'
 set title 'Stack usage (Atmel ATmega128)'
 plot 'results_nanopb_avr' using 2:5 title 'nanopb' with steps, \
@@ -66,7 +67,8 @@ plot 'results_nanopb_avr' using 2:5 title 'nanopb' with steps, \
     'results_nanopb_avr' every 2 using 2:($5+50):1 notitle with labels, \
     'results_pec_avr' using 2:5 title 'protobuf-embedded-c' with steps lt 2, \
     'results_pec_avr' using 2:5 notitle with points lt 2 pt 7, \
-    'results_pec_avr' using 2:($5-50):1 notitle with labels
+    'results_pec_avr' using 2:($5-50):1 notitle with labels, \
+    1004 title 'size of message structs'
 
 set output 'publish/avr_code.png'
 set yrange [0:20000]
