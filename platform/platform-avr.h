@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-#define STACK_TOP 0x1000
+#define STACK_TOP 0x1100
 
 #define special_output_port (*((volatile char *)0x20))
 
