@@ -18,7 +18,7 @@ simulation_size: nanopb/pb_encode.o nanopb/pb_decode.o alltypes.pb.o results.pb.
 results_all: results_0.1.1 results_0.1.2 \
              results_0.1.3 results_0.1.4 results_0.1.5 \
              results_0.1.6 results_0.1.7 results_0.1.8 \
-             results_0.1.9
+             results_0.1.9 results_0.2.0
 	cat $^ > $@
 
 results_0.1.1:
@@ -93,6 +93,14 @@ results_0.1.9:
 	echo 0.1.9 > simulation_version
 	echo 2013-02-13 > simulation_date
 	tar xzf nanopb-0.1.9.tar.gz
+	make -B simulation_combined
+	cp simulation_combined $@
+
+results_0.2.0:
+	rm -rf nanopb
+	echo 0.2.0 > simulation_version
+	echo 2013-03-02 > simulation_date
+	tar xzf nanopb-0.2.0.tar.gz
 	make -B simulation_combined
 	cp simulation_combined $@
 
