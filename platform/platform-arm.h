@@ -12,13 +12,13 @@
 
 static inline void platform_write(const void *buf, int length)
 {
-    static uint32_t args[3];
+    uint32_t args[3];
     args[0] = 1;
     args[1] = (uint32_t)buf;
     args[2] = length;
     asm("mov r0, #5\n"
         "mov r1, %0\n"
-        "bkpt 0x00ab"  : : "r"(args) : "r0", "r1");
+        "bkpt 0x00ab"  : : "r"(args) : "r0", "r1", "memory");
 }
 
 static inline int platform_stack_usage()
