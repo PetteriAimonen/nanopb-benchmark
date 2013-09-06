@@ -1,4 +1,4 @@
-CSRC = test-protobuf-c.c alltypes.pb-c.c results.pb-c.c
+CSRC = alltypes.pb-c.c results.pb-c.c test-protobuf-c.c
 CSRC += protobuf-c/src/google/protobuf-c/protobuf-c.c
 CFLAGS = -I protobuf-c/src
 
