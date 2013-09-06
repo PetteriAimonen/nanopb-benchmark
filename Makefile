@@ -16,6 +16,7 @@ publish/index.html: report_template.html
 
 make_images: generate_graphs.gnuplot results_nanopb_arm results_pec_arm results_pbc_arm \
 		results_nanopb_avr results_pec_avr
+	mkdir -p publish
 	gnuplot generate_graphs.gnuplot
 
 results_nanopb_avr:
