@@ -18,9 +18,10 @@ static inline void platform_write(const void *buf, int length)
 static inline int platform_stack_usage()
 {
     int i;
-    for (i = 2048; i > 0; i -= 4)
+    for (i = 2047; i > 0; i -= 4)
     {
-        if (*(uint16_t*)(STACK_TOP - i) != 0)
+        /* Note that this relies on the memory being initialized to constant value.. */
+        if (*(uint16_t*)(STACK_TOP - i) != *(uint16_t*)(STACK_TOP - i - 1))
             return i;    
     }
     return -1;
