@@ -1,6 +1,6 @@
 CC = avr-gcc
 CFLAGS += -mmcu=atmega128
-CFLAGS += -g -Wall -Os -I ../platform -Wno-unused
+CFLAGS += -g -Wall -O2 -I ../platform -Wno-unused
 
 # Workaround for AVR double being really just float
 CFLAGS += -include stdint.h -Ddouble=uint64_t
