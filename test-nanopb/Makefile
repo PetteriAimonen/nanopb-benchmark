@@ -7,7 +7,7 @@ all: results_all
 include ../platform/Makefile
 
 %.pb: %.proto nanopb
-	protoc -I. -Inanopb/generator -I/usr/include -o$@ $<
+	protoc -I. -Inanopb/generator -Inanopb/generator/proto -I/usr/include -o$@ $<
 
 %.pb.c %.pb.h: %.pb nanopb
 	python nanopb/generator/nanopb_generator.py $<
