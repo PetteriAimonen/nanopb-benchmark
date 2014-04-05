@@ -20,7 +20,7 @@ results_all: results_0.1.1 results_0.1.2 \
              results_0.1.6 results_0.1.7 results_0.1.8 \
              results_0.1.9 results_0.2.0 results_0.2.1 \
              results_0.2.2 results_0.2.3 results_0.2.4 \
-             results_0.2.5 results_0.2.6
+             results_0.2.5 results_0.2.6 \
              results_HEAD
 	cat $^ > $@
 
