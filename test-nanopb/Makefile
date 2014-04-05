@@ -144,6 +144,7 @@ results_0.2.5:
 	echo 0.2.5 > simulation_version
 	echo 2014-01-01 > simulation_date
 	tar xzf nanopb-0.2.5.tar.gz
+	make -BC nanopb/generator/proto
 	make -B simulation_combined
 	cp simulation_combined $@
 
@@ -152,6 +153,7 @@ results_0.2.6:
 	echo 0.2.6 > simulation_version
 	echo 2014-02-15 > simulation_date
 	tar xzf nanopb-0.2.6.tar.gz
+	make -BC nanopb/generator/proto
 	make -B simulation_combined
 	cp simulation_combined $@
 
