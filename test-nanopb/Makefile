@@ -20,6 +20,7 @@ results_all: results_0.1.1 results_0.1.2 \
              results_0.1.6 results_0.1.7 results_0.1.8 \
              results_0.1.9 results_0.2.0 results_0.2.1 \
              results_0.2.2 results_0.2.3 results_0.2.4 \
+             results_0.2.5 results_0.2.6
              results_HEAD
 	cat $^ > $@
 
@@ -135,6 +136,22 @@ results_0.2.4:
 	echo 0.2.4 > simulation_version
 	echo 2013-11-07 > simulation_date
 	tar xzf nanopb-0.2.4.tar.gz
+	make -B simulation_combined
+	cp simulation_combined $@
+
+results_0.2.5:
+	rm -rf nanopb
+	echo 0.2.5 > simulation_version
+	echo 2014-01-01 > simulation_date
+	tar xzf nanopb-0.2.5.tar.gz
+	make -B simulation_combined
+	cp simulation_combined $@
+
+results_0.2.6:
+	rm -rf nanopb
+	echo 0.2.6 > simulation_version
+	echo 2014-02-15 > simulation_date
+	tar xzf nanopb-0.2.6.tar.gz
 	make -B simulation_combined
 	cp simulation_combined $@
 

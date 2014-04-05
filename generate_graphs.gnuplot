@@ -6,7 +6,7 @@ set terminal pngcairo
 set xtics nomirror
 set ytics nomirror
 
-set xrange ["2011-12-01":"2013-12-31"]
+set xrange ["2011-12-01":"2014-12-31"]
 set xtics 86400*365
 set mxtics 12
 
