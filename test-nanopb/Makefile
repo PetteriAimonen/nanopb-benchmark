@@ -2,6 +2,13 @@ CSRC = alltypes.pb.c results.pb.c test-nanopb.c
 CSRC += nanopb/pb_encode.c nanopb/pb_decode.c
 CFLAGS = -I nanopb -DPB_NO_ERRMSG -DPB_BUFFER_ONLY
 
+SIZE_OBJS = nanopb/pb_encode.o nanopb/pb_decode.o alltypes.pb.o results.pb.o
+
+ifneq ($(wildcard nanopb/pb_common.c),)
+   CSRC += nanopb/pb_common.c
+   SIZE_OBJS += nanopb/pb_common.o
+endif
+
 all: results_all
 
 include ../platform/Makefile
@@ -12,7 +19,7 @@ include ../platform/Makefile
 %.pb.c %.pb.h: %.pb nanopb
 	python nanopb/generator/nanopb_generator.py $<
 
-simulation_size: nanopb/pb_encode.o nanopb/pb_decode.o alltypes.pb.o results.pb.o
+simulation_size: $(SIZE_OBJS)
 	size -t $^ | grep TOTALS | grep -o '[0-9]*' | head -n 1 > $@
 
 results_all: results_0.1.1 results_0.1.2 \
