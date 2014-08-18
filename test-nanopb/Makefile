@@ -164,6 +164,33 @@ results_0.2.6:
 	make -B simulation_combined
 	cp simulation_combined $@
 
+results_0.2.7:
+	rm -rf nanopb
+	echo 0.2.7 > simulation_version
+	echo 2014-04-07 > simulation_date
+	tar xzf nanopb-0.2.7.tar.gz
+	make -BC nanopb/generator/proto
+	make -B simulation_combined
+	cp simulation_combined $@
+
+results_0.2.8:
+	rm -rf nanopb
+	echo 0.2.8 > simulation_version
+	echo 2014-05-20 > simulation_date
+	tar xzf nanopb-0.2.8.tar.gz
+	make -BC nanopb/generator/proto
+	make -B simulation_combined
+	cp simulation_combined $@
+
+results_0.2.9:
+	rm -rf nanopb
+	echo 0.2.9 > simulation_version
+	echo 2014-08-09 > simulation_date
+	tar xzf nanopb-0.2.9.tar.gz
+	make -BC nanopb/generator/proto
+	make -B simulation_combined
+	cp simulation_combined $@
+
 results_HEAD:
 	rm -rf nanopb
 	echo HEAD > simulation_version
