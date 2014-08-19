@@ -1,11 +1,15 @@
 CSRC = alltypes.pb-c.c results.pb-c.c test-protobuf-c.c
 
+SIZEOBJS = alltypes.pb-c.o results.pb-c.o
+
 ifneq ($(wildcard protobuf-c/src/google/protobuf-c/protobuf-c.c),)
     CFLAGS = -I protobuf-c/src
     CSRC += protobuf-c/src/google/protobuf-c/protobuf-c.c
+    SIZEOBJS += protobuf-c/src/google/protobuf-c/protobuf-c.o
 else
     CFLAGS = -I protobuf-c
     CSRC += protobuf-c/protobuf-c/protobuf-c.c
+    SIZEOBJS += protobuf-c/protobuf-c/protobuf-c.o
 endif
 
 all: results_all
@@ -15,7 +19,7 @@ include ../platform/Makefile
 %.pb-c.c %.pb-c.h: %.proto
 	protobuf-c/*/protoc-c --c_out=. $<
 
-simulation_size: protobuf-c/src/google/protobuf-c/protobuf-c.o alltypes.pb-c.o results.pb-c.o
+simulation_size: $(SIZEOBJS)
 	size -t $^ | grep TOTALS | grep -o '[0-9]*' | head -n 1 > $@
 
 results_all: results_0.15 results_1.0.1
