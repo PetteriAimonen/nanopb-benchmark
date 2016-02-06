@@ -14,8 +14,8 @@ publish/index.html: report_template.html
 		sed "s@{avr_simulator_info}@$(AVR_SIMULATOR_VERSION)@" \
 	> $@
 
-make_images: generate_graphs.gnuplot results_nanopb_arm results_pec_arm results_pbc_arm \
-		results_nanopb_avr results_pec_avr
+make_images: generate_graphs.gnuplot results_nanopb_arm results_pbc_arm \
+		results_nanopb_avr
 	mkdir -p publish
 	gnuplot generate_graphs.gnuplot
 
