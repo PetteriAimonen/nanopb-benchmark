@@ -27,28 +27,12 @@ results_nanopb_avr:
 	cp test-nanopb/results_all $@
 	echo xxxx 2099-01-01 `tail -n 1 $@ | cut -d ' ' -f 3-` >> $@
 
-results_pec_avr:
-	ln -sf Makefile.avr platform/Makefile
-	ln -sf platform-avr.h platform/platform.h
-	rm -f test-protobuf-embedded-c/results_*
-	make -C test-protobuf-embedded-c
-	cp test-protobuf-embedded-c/results_all $@
-	echo xxxx 2099-01-01 `tail -n 1 $@ | cut -d ' ' -f 3-` >> $@
-
 results_nanopb_arm:
 	ln -sf Makefile.arm platform/Makefile
 	ln -sf platform-arm.h platform/platform.h
 	rm -f test-nanopb/results_*
 	make -C test-nanopb
 	cp test-nanopb/results_all $@
-	echo xxxx 2099-01-01 `tail -n 1 $@ | cut -d ' ' -f 3-` >> $@
-
-results_pec_arm:
-	ln -sf Makefile.arm platform/Makefile
-	ln -sf platform-arm.h platform/platform.h
-	rm -f test-protobuf-embedded-c/results_*
-	make -C test-protobuf-embedded-c
-	cp test-protobuf-embedded-c/results_all $@
 	echo xxxx 2099-01-01 `tail -n 1 $@ | cut -d ' ' -f 3-` >> $@
 
 results_pbc_arm:

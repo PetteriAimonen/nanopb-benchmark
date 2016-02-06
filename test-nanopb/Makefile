@@ -22,12 +22,9 @@ include ../platform/Makefile
 simulation_size: $(SIZE_OBJS)
 	size -t $^ | grep TOTALS | grep -o '[0-9]*' | head -n 1 > $@
 
-results_all: results_0.1.1 results_0.1.2 \
-             results_0.1.3 results_0.1.4 results_0.1.5 \
-             results_0.1.6 results_0.1.7 results_0.1.8 \
-             results_0.1.9 results_0.2.0 results_0.2.1 \
-             results_0.2.2 results_0.2.3 results_0.2.4 \
-             results_0.2.5 results_0.2.6 \
+results_all: results_0.1.1 results_0.1.6 results_0.1.9 \
+             results_0.2.0 results_0.2.6 \
+             results_0.3.4 \
              results_HEAD
 	cat $^ > $@
 
@@ -187,6 +184,15 @@ results_0.2.9:
 	echo 0.2.9 > simulation_version
 	echo 2014-08-09 > simulation_date
 	tar xzf nanopb-0.2.9.tar.gz
+	make -BC nanopb/generator/proto
+	make -B simulation_combined
+	cp simulation_combined $@
+
+results_0.3.4:
+	rm -rf nanopb
+	echo 0.3.4 > simulation_version
+	echo 2015-09-26 > simulation_date
+	tar xzf nanopb-0.3.4.tar.gz
 	make -BC nanopb/generator/proto
 	make -B simulation_combined
 	cp simulation_combined $@
