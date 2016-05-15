@@ -201,7 +201,7 @@ results_HEAD:
 	rm -rf nanopb
 	echo HEAD > simulation_version
 	echo `date +%Y-%m-%d` > simulation_date
-	git clone https://code.google.com/p/nanopb/
+	git clone https://github.com/nanopb/nanopb.git
 	make -BC nanopb/generator/proto
 	make -B simulation_combined
 	cp simulation_combined $@
